@@ -1,0 +1,456 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Form Students Account",
+    "contact": {},
+    "version": "1.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8000",
+      "variables": {}
+    }
+  ],
+  "paths": {
+    "/students": {
+      "post": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Create New Student",
+        "parameters": [],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "encoding": {},
+              "schema": {
+                "required": [
+                  "nama",
+                  "jurusan",
+                  "status"
+                ],
+                "type": "object",
+                "properties": {
+                  "nama": {
+                    "type": "string",
+                    "example": "Michael Jackson"
+                  },
+                  "jurusan": {
+                    "type": "string",
+                    "example": "Sistem Informasi"
+                  },
+                  "status": {
+                    "type": "string",
+                    "example": "aktif"
+                  }
+                }
+              }
+            }
+          },
+          "required": false
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 05 Aug 2023 11:04:38 GMT"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "405"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Origin"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "example": {
+                        "data": {
+                          "CreatedAt": "2023-08-29T21:21:47.10689362+07:00",
+                          "UpdatedAt": "2023-08-29T21:21:47.10689362+07:00",
+                          "DeletedAt": null,
+                          "ID": 4,
+                          "nama": "Michael Jackson",
+                          "jurusan": "Informatika",
+                          "status": "aktif"
+                        },
+                        "message": "Created"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "data": {
+                    "CreatedAt": "2023-08-29T21:21:47.10689362+07:00",
+                    "UpdatedAt": "2023-08-29T21:21:47.10689362+07:00",
+                    "DeletedAt": null,
+                    "ID": 4,
+                    "nama": "Michael Jackson",
+                    "jurusan": "Informatika",
+                    "status": "aktif"
+                  },
+                  "message": "Created"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Get List Students",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 05 Aug 2023 11:04:55 GMT"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "1104"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Origin"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "example": {
+                        "data": [
+                          {
+                            "CreatedAt": "2023-08-29T21:14:22.805389+07:00",
+                            "UpdatedAt": "2023-08-29T21:14:22.805389+07:00",
+                            "DeletedAt": null,
+                            "ID": 1,
+                            "nama": "ruben",
+                            "jurusan": "sistem informasi",
+                            "status": "aktif"
+                          },
+                          {
+                            "CreatedAt": "2023-08-29T21:15:38.682874+07:00",
+                            "UpdatedAt": "2023-08-29T21:15:38.682874+07:00",
+                            "DeletedAt": null,
+                            "ID": 2,
+                            "nama": "ahmad",
+                            "jurusan": "sistem informasi",
+                            "status": "aktif"
+                          },
+                          {
+                            "CreatedAt": "2023-08-29T21:21:45.800473+07:00",
+                            "UpdatedAt": "2023-08-29T21:21:45.800473+07:00",
+                            "DeletedAt": null,
+                            "ID": 3,
+                            "nama": "Michael Jackson",
+                            "jurusan": "Informatika",
+                            "status": "aktif"
+                          }
+                        ],
+                        "message": "OK"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "data": [
+                    {
+                      "CreatedAt": "2023-08-29T21:14:22.805389+07:00",
+                      "UpdatedAt": "2023-08-29T21:14:22.805389+07:00",
+                      "DeletedAt": null,
+                      "ID": 1,
+                      "nama": "ruben",
+                      "jurusan": "sistem informasi",
+                      "status": "aktif"
+                    },
+                    {
+                      "CreatedAt": "2023-08-29T21:15:38.682874+07:00",
+                      "UpdatedAt": "2023-08-29T21:15:38.682874+07:00",
+                      "DeletedAt": null,
+                      "ID": 2,
+                      "nama": "ahmad",
+                      "jurusan": "sistem informasi",
+                      "status": "aktif"
+                    },
+                    {
+                      "CreatedAt": "2023-08-29T21:21:45.800473+07:00",
+                      "UpdatedAt": "2023-08-29T21:21:45.800473+07:00",
+                      "DeletedAt": null,
+                      "ID": 3,
+                      "nama": "Michael Jackson",
+                      "jurusan": "Informatika",
+                      "status": "aktif"
+                    }
+                  ],
+                  "message": "OK"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/students/{id}": {
+      "get": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Get Student By ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "selected ID of student",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "int"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 05 Aug 2023 11:05:24 GMT"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "388"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Origin"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "example": {
+                        "data": {
+                          "CreatedAt": "2023-08-29T21:14:22.805389+07:00",
+                          "UpdatedAt": "2023-08-29T21:14:22.805389+07:00",
+                          "DeletedAt": null,
+                          "ID": 1,
+                          "nama": "ruben",
+                          "jurusan": "sistem informasi",
+                          "status": "aktif"
+                        },
+                        "message": "OK"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "data": {
+                    "CreatedAt": "2023-08-29T21:14:22.805389+07:00",
+                    "UpdatedAt": "2023-08-29T21:14:22.805389+07:00",
+                    "DeletedAt": null,
+                    "ID": 1,
+                    "nama": "ruben",
+                    "jurusan": "sistem informasi",
+                    "status": "aktif"
+                  },
+                  "message": "OK"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      },
+      "delete": {
+        "tags": [
+          "Students"
+        ],
+        "summary": "Delete Student By ID",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "selected ID of student",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "int"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "headers": {
+              "Date": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Sat, 05 Aug 2023 11:05:50 GMT"
+                  }
+                }
+              },
+              "Content-Length": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "53"
+                  }
+                }
+              },
+              "Vary": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "Origin"
+                  }
+                }
+              },
+              "Access-Control-Allow-Origin": {
+                "content": {
+                  "text/plain": {
+                    "schema": {
+                      "type": "string"
+                    },
+                    "example": "*"
+                  }
+                }
+              }
+            },
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "example": {
+                        "message": "Deleted"
+                      }
+                    }
+                  ]
+                },
+                "example": {
+                  "message": "Deleted"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": false
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Students",
+      "description": ""
+    }
+  ]
+}
