@@ -28,18 +28,6 @@ func setupDBConfig() *db.ConfigDB {
 	return config
 }
 
-// function return *gin.Engine
-func MockGinEngine() *gin.Engine {
-	return gin.Default()
-}
-
-func MockGinContext() *gin.Context {
-	w := httptest.NewRecorder()
-	c, _ := gin.CreateTestContext(w)
-	// c, _ := gin.Engine
-	return c
-}
-
 func TestStudentsController_CreateStudents(t *testing.T) {
 	type fields struct {
 		DB *gorm.DB
