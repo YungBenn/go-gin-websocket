@@ -23,7 +23,12 @@ func main() {
 
 	r := gin.Default()
 
-	r.Use(cors.Default())
+	configCORS := cors.DefaultConfig()
+	configCORS.AllowOrigins = []string{"http://localhost:4000", "http://localhost:3000"}
+	configCORS.AllowMethods = []string{"GET", "POST", "PUT", "DELETE", "PATCH"}
+
+	r.Use(cors.New(configCORS))
+	// r.Use(cors.Default())
 
 	statikFS, err := fs.New()
 	if err != nil {
@@ -34,7 +39,7 @@ func main() {
 	r.GET("/docs/*any", func(c *gin.Context) {
 		swaggerHandler.ServeHTTP(c.Writer, c.Request)
 	})
-	
+
 	config := &db.ConfigDB{
 		Host:     env.DB_HOST,
 		User:     env.DB_USER,
@@ -45,10 +50,10 @@ func main() {
 	}
 
 	db := db.ConnectDB(config)
-	
+
 	router := router.NewRouter(controller.NewStudentsController(db))
 	router.StudentRoutes(&r.RouterGroup)
-	
+
 	// websocket endpoint
 	r.GET("/ws", ws.HandleWebSocket)
 

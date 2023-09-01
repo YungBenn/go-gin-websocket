@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"errors"
 	"net/http"
 	"workshop-web-golang/internal/model"
 	"workshop-web-golang/internal/util"
@@ -15,7 +16,7 @@ type StudentsController struct {
 }
 
 func NewStudentsController(DB *gorm.DB) StudentsController {
-	return StudentsController{DB}
+	return StudentsController{DB: DB}
 }
 
 func (sc *StudentsController) CreateStudents(c *gin.Context) {
@@ -25,7 +26,7 @@ func (sc *StudentsController) CreateStudents(c *gin.Context) {
 		c.JSON(http.StatusInternalServerError, gin.H{
 			"error": err.Error(),
 		})
-		return
+		return 
 	}
 
 	newStudent := model.Students{
@@ -39,7 +40,7 @@ func (sc *StudentsController) CreateStudents(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": result.Error.Error(),
 		})
-		return
+		return 
 	}
 
 	ws.SendWebSocketUpdate("Create new student success")
@@ -66,6 +67,13 @@ func (sc *StudentsController) GetStudentByID(c *gin.Context) {
 
 	var student model.Students
 	if err := sc.DB.First(&student, studentID).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusNotFound, gin.H{
+				"error": "Student not found",
+			})
+			return
+		}
+
 		c.JSON(http.StatusBadRequest, gin.H{
 			"error": err.Error(),
 		})
