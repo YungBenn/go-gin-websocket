@@ -21,6 +21,7 @@ func main() {
 		log.Fatalf("Error loading configuration: %s", err)
 	}
 
+	gin.SetMode(gin.ReleaseMode)
 	r := gin.Default()
 
 	configCORS := cors.DefaultConfig()
