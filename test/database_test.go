@@ -1,7 +1,6 @@
 package test
 
 import (
-	"log"
 	"testing"
 	"workshop-web-golang/config"
 	"workshop-web-golang/internal/db"
@@ -10,7 +9,7 @@ import (
 func TestConnectDB(t *testing.T) {
 	env, err := config.LoadConfig()
 	if err != nil {
-		log.Fatalf("Error loading configuration: %s", err)
+		t.Errorf("Error loading configuration: %s", err)
 	}
 
 	config := &db.ConfigDB{
