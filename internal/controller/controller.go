@@ -68,7 +68,7 @@ func (sc *StudentsController) GetStudentByID(c *gin.Context) {
 	var student model.Students
 	if err := sc.DB.First(&student, studentID).Error; err != nil {
 		if errors.Is(err, gorm.ErrRecordNotFound) {
-			c.JSON(http.StatusNotFound, gin.H{
+			c.JSON(http.StatusNoContent, gin.H{
 				"error": "Student not found",
 			})
 			return
@@ -87,6 +87,13 @@ func (sc *StudentsController) DeleteStudentByID(c *gin.Context) {
 	studentID := c.Param("id")
 
 	if err := sc.DB.Delete(&model.Students{}, "id = ?", studentID).Error; err != nil {
+		if errors.Is(err, gorm.ErrRecordNotFound) {
+			c.JSON(http.StatusNoContent, gin.H{
+				"error": "Student not found",
+			})
+			return
+		}
+
 		c.JSON(400, gin.H{
 			"error": err.Error(),
 		})

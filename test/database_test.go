@@ -1,22 +1,33 @@
 package test
 
 import (
-	"fmt"
+	"log"
 	"testing"
+	"workshop-web-golang/config"
 	"workshop-web-golang/internal/db"
 )
 
-func TestConnectDB(t *testing.T){
-	config := &db.ConfigDB{
-		Host:     "localhost",
-		User:     "postgres",
-		Password: "example",
-		DBName:   "workshop_len",
-		Port:     "5432",
-		SSLMode:  "disable",
+func TestConnectDB(t *testing.T) {
+	env, err := config.LoadConfig()
+	if err != nil {
+		log.Fatalf("Error loading configuration: %s", err)
 	}
 
-	_ = db.ConnectDB(config)
+	config := &db.ConfigDB{
+		Host:     env.DB_HOST,
+		User:     env.DB_USER,
+		Password: env.DB_PASS,
+		DBName:   env.DB_NAME,
+		Port:     env.DB_PORT,
+		SSLMode:  env.DB_SSLMODE,
+	}
 
-	fmt.Println("Test connect to database successfully")
+	if config.Host == "localhost" ||
+		config.User == "postgres" ||
+		config.Password == "example" ||
+		config.DBName == "workshop_len" ||
+		config.Port == "5432" ||
+		config.SSLMode == "disable" {
+		t.Error("Database config didn't work")
+	}
 }
